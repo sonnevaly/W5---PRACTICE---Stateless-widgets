@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          backgroundColor: Colors.blue[300],
+          title: const Text('Weather Forecast'),
           centerTitle: true,
+          backgroundColor: Colors.blue[300],
         ),
         body: ListView(
           padding: const EdgeInsets.all(16),
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               city: 'Rome',
               minTemp: 10,
               maxTemp: 40,
-              currentTemp: 45.2,
+              currentTemp: 35.2,
               color1: Colors.orange,
               color2: Colors.red,
               imagePath: 'assets/ex4/sunny.png',
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
               city: 'Toulouse',
               minTemp: 10,
               maxTemp: 40,
-              currentTemp: 45.2,
+              currentTemp: 28.5,
               color1: Colors.orangeAccent,
               color2: Colors.deepOrange,
               imagePath: 'assets/ex4/veryCloudy.png',
@@ -107,7 +108,7 @@ class WeatherCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 25,
-                  backgroundColor: Colors.white.withValues(alpha: 0.3),
+                  backgroundColor: Colors.white.withOpacity(0.3),
                   backgroundImage: AssetImage(imagePath),
                 ),
                 const SizedBox(width: 16),
@@ -125,7 +126,7 @@ class WeatherCard extends StatelessWidget {
                     Text(
                       'Min: ${minTemp.toStringAsFixed(1)}°C\nMax: ${maxTemp.toStringAsFixed(1)}°C',
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.9),
+                        color: Colors.white.withOpacity(0.9),
                         fontSize: 13,
                       ),
                     ),

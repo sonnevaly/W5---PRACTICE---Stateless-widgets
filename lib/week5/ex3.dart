@@ -4,7 +4,17 @@ void main() {
   runApp(const MyApp());
 }
 
-enum ProductType { dart, flutter, firebase }
+enum ProductType {
+  dart('Dart', 'The best object language', 'assets/ex3/dart.png'),
+  flutter('Flutter', 'The best mobile widget library', 'assets/ex3/flutter.png'),
+  firebase('Firebase', 'The best cloud database', 'assets/ex3/firebase.png');
+
+  final String title;
+  final String description;
+  final String imagePath;
+
+  const ProductType(this.title, this.description, this.imagePath);
+}
 
 class ProductCard extends StatelessWidget {
   final ProductType product;
@@ -13,34 +23,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String imagePath = '';
-    String title = '';
-    String description = '';
-
-    switch (product) {
-      case ProductType.dart:
-        imagePath = 'assets/ex3/dart.png';
-        title = 'Dart';
-        description = 'the best object language';
-        break;
-      case ProductType.flutter:
-        imagePath = 'assets/ex3/flutter.png';
-        title = 'Flutter';
-        description = 'the best mobile widget library';
-        break;
-      case ProductType.firebase:
-        imagePath = 'assets/ex3/firebase.png';
-        title = 'Firebase';
-        description = 'the best cloud database';
-        break;
-    }
-
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -48,10 +33,10 @@ class ProductCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                imagePath,
+                product.imagePath,
                 width: 60,
                 height: 60,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             const SizedBox(width: 16),
@@ -60,7 +45,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    product.title,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -68,7 +53,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    description,
+                    product.description,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[700],
@@ -91,14 +76,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Products')),
         backgroundColor: Colors.grey[200],
-        body: ListView(
-          children: const [
-            ProductCard(product: ProductType.dart),
-            ProductCard(product: ProductType.flutter),
-            ProductCard(product: ProductType.firebase),
-          ],
+        appBar: AppBar(title: const Text('Products')),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: ListView(
+            children: const [
+              ProductCard(product: ProductType.dart),
+              ProductCard(product: ProductType.flutter),
+              ProductCard(product: ProductType.firebase),
+            ],
+          ),
         ),
       ),
     );

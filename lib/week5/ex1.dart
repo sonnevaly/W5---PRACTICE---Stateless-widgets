@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: const Text('My hobbies'),
+          title: const Text('My Hobbies'),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(50), 
+          padding: const EdgeInsets.all(50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
@@ -24,10 +25,10 @@ class MyApp extends StatelessWidget {
                 title: 'Travelling',
                 color: Colors.green,
               ),
-              SizedBox(height: 30), 
+              SizedBox(height: 30),
               HobbyCard(
-                title: 'Skating',
                 icon: Icons.ice_skating,
+                title: 'Skating',
                 color: Colors.blueGrey,
               ),
             ],
@@ -41,13 +42,13 @@ class MyApp extends StatelessWidget {
 class HobbyCard extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Color? color;
+  final Color color;
 
   const HobbyCard({
     super.key,
     required this.icon,
     required this.title,
-    this.color = Colors.blue, 
+    this.color = Colors.blue,
   });
 
   @override
@@ -58,28 +59,23 @@ class HobbyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         color: color,
       ),
-      child: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(width: 30), 
-            const SizedBox(width: 10),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Icon(
-                icon,
-                color: Colors.white,
-              ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(width: 30),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 10),
+            child: Icon(icon, color: Colors.white, size: 32),
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 32,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
             ),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 32,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

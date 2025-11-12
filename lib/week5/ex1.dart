@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
           title: const Text('My hobbies'),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(50), // fixed EdgeInsets
+          padding: const EdgeInsets.all(50), 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
